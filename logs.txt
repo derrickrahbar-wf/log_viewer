@@ -1,0 +1,415 @@
+0.1.0.2 - - [07/Nov/2014:07:10:27 -0800] "POST /_ah/queue/deferred/auth.groups._update_data_entities HTTP/1.1" 500 117 "http://wf-books-stage.appspot.com/_ah/queue/deferred/auth.groups._update_permissions_objects_deferred" "AppEngine-Google; (+http://code.google.com/appengine)" "wf-books-stage.appspot.com" ms=5474 cpu_ms=397 cpm_usd=0.000013 queue_name=data-entity-slow task_name=1918715808419581109 pending_ms=77 instance=00c61b117cbc890cad1f6c70ae42e2cab456a1 app_engine_release=1.9.16
+	0:1415373022.218210 TASK-INFO: {"gae_latency_seconds": 48.885204076766968, "task_eta": 1415372973.332736, "execution_count": 0, "ran": 1415373022.2179401, "expected_eta": 1415372973.3320501, "retry_count": 0, "latency_seconds": 48.885890007019043}
+	1:1415373022.243360 Deferred d2e6d097-1c1b-449e-bd44-8826a9d650ae running function auth.groups._update_data_entities with args = ([<auth.models.ObjPermissions object at 0xfa32b2f0>, <auth.models.ObjPermissions object at 0xfa30fd50>, <auth.models.ObjPermissions object at 0xfa30f930>, <auth.models.ObjPermissions object at 0xfa0ab830>, <auth.models.ObjPermissions object at 0xfa3389b0>], 'add') and kwargs = {}.
+	3:1415373027.435070 Too many <class 'google.appengine.runtime.apiproxy_errors.DeadlineExceededError'> errors, after retry 0.
+	3:1415373027.435450 Exception caught in deferred.go.
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 409, in go
+	:     retry_limit=retry_limit)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 467, in _insert_tasks
+	:     taskqueue.Queue(name=queue).add(tasks, transactional=transactional)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/taskqueue/taskqueue.py", line 1926, in add
+	:     return self.add_async(task, transactional).get_result()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_stub_map.py", line 613, in get_result
+	:     return self.__get_result_hook(self)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/taskqueue/taskqueue.py", line 1936, in ResultHook
+	:     rpc.check_success()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_stub_map.py", line 579, in check_success
+	:     self.__rpc.CheckSuccess()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_rpc.py", line 134, in CheckSuccess
+	:     raise self.exception
+	: DeadlineExceededError: The API call taskqueue.BulkAdd() took too long to respond and was cancelled.
+	3:1415373027.553280 An error occurred executing 'auth.groups._update_data_entities', and there is no user defined errorback.
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 893, in _run_deferred
+	:     *func_runner_args, **func_runner_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 569, in _run_function
+	:     return_value = function(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/groups.py", line 648, in _update_data_entities
+	:     task.go(queue=dataentity.DATA_ENTITY_QUEUE_SLOW)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 409, in go
+	:     retry_limit=retry_limit)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 467, in _insert_tasks
+	:     taskqueue.Queue(name=queue).add(tasks, transactional=transactional)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/taskqueue/taskqueue.py", line 1926, in add
+	:     return self.add_async(task, transactional).get_result()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_stub_map.py", line 613, in get_result
+	:     return self.__get_result_hook(self)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/taskqueue/taskqueue.py", line 1936, in ResultHook
+	:     rpc.check_success()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_stub_map.py", line 579, in check_success
+	:     self.__rpc.CheckSuccess()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_rpc.py", line 134, in CheckSuccess
+	:     raise self.exception
+	: DeadlineExceededError: The API call taskqueue.BulkAdd() took too long to respond and was cancelled.
+	3:1415373027.564440 deferred - Exception - will retry
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/views.py", line 348, in deferred
+	:     deferred.run(request.raw_post_data)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/ext/deferred/deferred.py", line 147, in run
+	:     return func(*args, **kwds)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 893, in _run_deferred
+	:     *func_runner_args, **func_runner_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 569, in _run_function
+	:     return_value = function(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/groups.py", line 648, in _update_data_entities
+	:     task.go(queue=dataentity.DATA_ENTITY_QUEUE_SLOW)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 409, in go
+	:     retry_limit=retry_limit)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/deferred/deferred.py", line 467, in _insert_tasks
+	:     taskqueue.Queue(name=queue).add(tasks, transactional=transactional)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/taskqueue/taskqueue.py", line 1926, in add
+	:     return self.add_async(task, transactional).get_result()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_stub_map.py", line 613, in get_result
+	:     return self.__get_result_hook(self)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/taskqueue/taskqueue.py", line 1936, in ResultHook
+	:     rpc.check_success()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_stub_map.py", line 579, in check_success
+	:     self.__rpc.CheckSuccess()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/apiproxy_rpc.py", line 134, in CheckSuccess
+	:     raise self.exception
+	: DeadlineExceededError: The API call taskqueue.BulkAdd() took too long to respond and was cancelled.
+	1:1415373027.575220 PROFILE: eJytkstqwzAQRX/FaJ2FHpYf2TWFdltod6UEIU9iE9uilmUKwf9epbTgaCC4ancajTicuZozgQ/Q+7HpgGwTKTK5SYiZYKhBVf6G+lKrtrX+/HomlRvU2JjeV+K744/kEUbiSwvD1OgLiHTQaaVruFybw8H6B9uEz5vkrwx2E/K8EpKFkPKmSaVGZUczwH4SVyCRhyC5AO1ce7qrqgDmUad3B+5aKUOkSKVc/pdSWYakIk6JUTRcFunEBEOoPNJKoPkkpSxSjHOUe8RiSi6KEJMujeDY9C+D6q3SX+2Vs0qeCqRH43LzLOTI+IL15H7BKlBs6TK3e9N1zXqcoGg9lmYPrbN1AGvN8ae6RqVoPWI+VEgcfAwmY/Pb/Al8G7gR
+	1:1415373027.592880 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415373022208
+206.80.201.33 - - [07/Nov/2014:07:14:08 -0800] "GET /api/v1/books/Qm9vax5Cb29rOmQ3MzI2MjA4NWJhNTQ2OWU5MzBhZGQ1NzY0NDViNTFm HTTP/1.1" 500 1197 - "Wdesk 2.0.283" "wf-books-stage.appspot.com" ms=335 cpu_ms=425 cpm_usd=0.000134 instance=00c61b117cec6a34ba518d84ee5abc760f15dbb0 app_engine_release=1.9.16
+	1:1415373248.074030 Loading session u'099f0fe2'.
+	1:1415373248.099410 REQINFO: 206.80.201.33 | dan.newton@workiva.com | 78864972340 | Super Robert Test Account
+	3:1415373248.100830 Error executing /api/v1/books/Qm9vax5Cb29rOmQ3MzI2MjA4NWJhNTQ2OWU5MzBhZGQ1NzY0NDViNTFm
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/oauth_handler.py", line 602, in dispatch
+	:     rv = super(DjangoMiddlewareApiRequestHandler, self).dispatch()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 572, in dispatch
+	:     return self.handle_exception(e, self.app.debug)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 570, in dispatch
+	:     return method(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/rest_api_handler.py", line 324, in get
+	:     resource = self.get_resource(resource_id=resource_id, version=version)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 158, in call
+	:     _license_required(self, session)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 181, in _license_required
+	:     raise auth.PermissionDenied('Missing required %r licenses' % (self.licenses))
+	: PermissionDenied: Missing required ['boardbooksEditor', 'boardbooksSupport', 'boardbooksViewer'] licenses
+	1:1415373248.238210 PROFILE: eJytk08LgjAYxr+K7OzBqTX1WIeuQd0iZMzXGjgH25RA/O7N6GAOxKzb+2f8eJ7nZR2CB7DccAEo83Aa+B6SLag70MIOhpbRqtK2vnSoaBQ1XNa2i94bW6IDGGRbDarlbOAgAYJRdodhLMtS2weZF/e+9ysDh1MImYUU1FBtpIK8jT5ByRQUfq8mdCDpOjVRNJfNaZka4mQTjyA7uPH6rGitKXutF0ojWycovM5kgqckPI7r2Cw/XkAcq8EItZdC8OW0MP1D+pg49lZRnLjX/JJk01/7J4zsKvs=
+	1:1415373248.251640 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415373248047
+206.80.201.33 - - [07/Nov/2014:07:14:56 -0800] "GET /api/v1/books/Qm9vax5Cb29rOjY5YmIxYzlkMDhhZjQ0MzI5MGRjMzAzMDkzNzhhMDQw HTTP/1.1" 500 1197 - "Wdesk 2.0.283" "wf-books-stage.appspot.com" ms=346 cpu_ms=302 cpm_usd=0.000134 instance=00c61b117cffb8d4d658d457f57bcdae104e810e app_engine_release=1.9.16
+	1:1415373296.276010 Loading session u'099f0fe2'.
+	1:1415373296.325150 REQINFO: 206.80.201.33 | dan.newton@workiva.com | 78864972340 | Super Robert Test Account
+	3:1415373296.327110 Error executing /api/v1/books/Qm9vax5Cb29rOjY5YmIxYzlkMDhhZjQ0MzI5MGRjMzAzMDkzNzhhMDQw
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/oauth_handler.py", line 602, in dispatch
+	:     rv = super(DjangoMiddlewareApiRequestHandler, self).dispatch()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 572, in dispatch
+	:     return self.handle_exception(e, self.app.debug)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 570, in dispatch
+	:     return method(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/rest_api_handler.py", line 324, in get
+	:     resource = self.get_resource(resource_id=resource_id, version=version)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 158, in call
+	:     _license_required(self, session)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 181, in _license_required
+	:     raise auth.PermissionDenied('Missing required %r licenses' % (self.licenses))
+	: PermissionDenied: Missing required ['boardbooksEditor', 'boardbooksSupport', 'boardbooksViewer'] licenses
+	1:1415373296.537859 PROFILE: eJytlE1rxCAQhv9K8LyHMZsPt8fuoddCeytlETPbFdYI6obCkv9eU3pIIwSbzk2d8eF9Z0bvDD9RnYI2yB6KPdS7gtkB3QVlFw8gbpW8Xn1cv91Zd3MyaNtPqT+RuGRPGFjcenSDVhOHGTRKqgtOx/Z89jEhXhl3xX8ZnK9BXjIhzRJS/l1JWS4hh1VIJ4P0wTo8DfvfoJbAUgUElipBoKSmaHN9WELEtuI2NYGllqJDHJKBmVMe8UP3r072XqrvcKZBDom4jaXiPBEoYIZ6vuWj0plu5maP1hid/0AgmYYN9S/bioRCokWQaBGrWnJ/ZYDxffwCIdrQjw==
+	1:1415373296.558020 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415373296231
+206.80.201.33 - - [07/Nov/2014:07:17:59 -0800] "GET /books/viewer/Qm9vax5Cb29rOmYzNmE3ZmZmMGM3ODQ3YjlhY2IyYzgyMzJlYjg4NmUz HTTP/1.1" 403 3391 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=330 cpu_ms=292 cpm_usd=0.000379 instance=00c61b117cec6a34ba518d84ee5abc760f15dbb0 app_engine_release=1.9.16
+	1:1415373479.262200 Loading session '466db0c7'.
+	1:1415373479.287100 REQINFO: 206.80.201.33 | dan.newton@workiva.com | 78864972340 | Super Robert Test Account
+	3:1415373479.291600 Missing required ['boardbooksEditor', 'boardbooksSupport', 'boardbooksViewer'] licenses
+	: Traceback (most recent call last):
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/django-1.2/django/core/handlers/base.py", line 100, in get_response
+	:     response = callback(request, *callback_args, **callback_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 397, in call
+	:     return subcall(request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 155, in call
+	:     return subcall(request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 61, in call
+	:     return base_decorators.BaseDecorator.call(self, request, *args, **new_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 154, in subcall
+	:     return BaseSecurityDecorator.call(self, request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 61, in call
+	:     return base_decorators.BaseDecorator.call(self, request, *args, **new_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 396, in subcall
+	:     return super(membership_required, self).call(request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 61, in call
+	:     return base_decorators.BaseDecorator.call(self, request, *args, **new_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 129, in call
+	:     _license_required(self, session)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 181, in _license_required
+	:     raise auth.PermissionDenied('Missing required %r licenses' % (self.licenses))
+	: PermissionDenied: Missing required ['boardbooksEditor', 'boardbooksSupport', 'boardbooksViewer'] licenses
+	1:1415373479.544720 PROFILE: eJytkz1vwyAQhv+KxezBgO2QjO3QtW2yRVGE8KVBCkYCbDWy/N9Dqg6uUS2bZLsPePTeq7sOwTeIo5MK0CahGU0TpFswZ+CVL2Q+FfxysT7ed6hqDHdS1z4jvx0fojdwyKcWTCvFnYMUKMHFGe5lfTpZ/8B/6dPkUcZ6zFhNMiruuHXawLGlfziYjkE0YqBgIhanhqymrNnOU1MGI+VDygt8yXpneG25+OnP1FYG2vC0Vf97jrMpv96b+SQS7AEbzvqqlZILdiGg0eX2E5I/g0IDj/IYSjGmFBHrnbNnHEkZUDAeYD6b+qMBc519KyxwKEbVmvWH/gZCn4IH
+	1:1415373479.556809 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415373479241
+206.80.201.33 - - [07/Nov/2014:07:18:08 -0800] "GET /books/viewer HTTP/1.1" 403 3391 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=149 cpu_ms=216 cpm_usd=0.000379 instance=00c61b117cffb8d4d658d457f57bcdae104e810e app_engine_release=1.9.16
+	1:1415373488.703760 Loading session '466db0c7'.
+	1:1415373488.725200 REQINFO: 206.80.201.33 | dan.newton@workiva.com | 78864972340 | Super Robert Test Account
+	3:1415373488.730890 Missing required ['boardbooksEditor', 'boardbooksSupport', 'boardbooksViewer'] licenses
+	: Traceback (most recent call last):
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/django-1.2/django/core/handlers/base.py", line 100, in get_response
+	:     response = callback(request, *callback_args, **callback_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 397, in call
+	:     return subcall(request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 155, in call
+	:     return subcall(request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 61, in call
+	:     return base_decorators.BaseDecorator.call(self, request, *args, **new_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 154, in subcall
+	:     return BaseSecurityDecorator.call(self, request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 61, in call
+	:     return base_decorators.BaseDecorator.call(self, request, *args, **new_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 396, in subcall
+	:     return super(membership_required, self).call(request, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/decorators.py", line 61, in call
+	:     return base_decorators.BaseDecorator.call(self, request, *args, **new_kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 129, in call
+	:     _license_required(self, session)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 181, in _license_required
+	:     raise auth.PermissionDenied('Missing required %r licenses' % (self.licenses))
+	: PermissionDenied: Missing required ['boardbooksEditor', 'boardbooksSupport', 'boardbooksViewer'] licenses
+	1:1415373488.807390 PROFILE: eJyt0ksKgzAQBuCrhKy7MLE+6gW6brssRUIcUVADSZQW8e6N0IUaEBuym5kMHz9MRgxv4LmuW8AZIjQ8ISwGkBWwwgwC03LWNMrUzxEXvWS6Ft28+nsxJb6CxqZVIIeazw5uoeWMVzCPRVkqs5AhOp3QyqD/G5etEe0aBdNMaSEhH8KVQ0IPYSjZIrFbGhptoXABPY6liaw0LoiVhDog1pUckHj3QkeRxMOZk7OPj2tdJ10g97679SA/h79v4CMTIen0mr6LJzTY
+	1:1415373488.820670 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415373488684
+206.80.201.33 - - [07/Nov/2014:08:04:05 -0800] "POST /api/v0.1/authentication/credentials/ HTTP/1.1" 403 9144 - "Wdesk/2.0 (Android)" "wf-books-stage.appspot.com" ms=363 cpu_ms=454 cpm_usd=0.001022 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415376245.194310 CSRF Failure: CSRF token incorrect.
+	1:1415376245.208650 Loading session u'9f6726cd'.
+	1:1415376245.411540 PROFILE: eJytkEEKgzAQRa8iWbtQY7R11256gC5LkZCMKGpDNZGCePcm0IUaELXuZpLh8d/vEXyApbKoASVOQDzXQaKDJgfK9YNZGa2qVs+PHnHVUFmIlzn9/egR3UAivbbQdAUzHFRDzSjLwTyLLGv1QeL4g+v8yzjPGXjEuK/MERwQxLeSkEUIp5K2UjSQdngCCvABStg7QAlHc0i8Tym00vjb05BFpZW9EKvcHb0Qq5doXy+RpRSOQFdVlRfOZzCNKt8K1DRSbJHwdq/APw3P4QuonjRv
+	1:1415376245.473210 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415376245160
+206.80.201.33 - - [07/Nov/2014:08:29:09 -0800] "POST /api/v0.1/authentication/credentials/ HTTP/1.1" 403 9144 - "Wdesk/2.0 (Android)" "wf-books-stage.appspot.com" ms=268 cpu_ms=216 cpm_usd=0.001022 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415377749.526089 CSRF Failure: CSRF token incorrect.
+	1:1415377749.585680 Saving session '32521c57'.
+	1:1415377749.644320 PROFILE: eJytkk1rwyAYx79K8NxDjIlNdls72HWw3cYook9XaYwsahiUfPeZsUMaITjJzdcf/5fnhuAb+MlKBeghK8p8lyE9QH8BJvzBtOWsbY1fv9+QcD2zUnfT078bv0TPYJHfGugHyScOUqA44xeYjvX5bPwD/2XcZXcM3KxCBLPMWN3DaSB3oP0SlCKmXoO8xkFIYClBCaFBLvu0XEq8gScaeKryGeXFRcuhqz09QQsWYhRh3GwQMy6CnMn/08EkyJgkaAk7T6wch53TGeng2uujEAuaZ12/HLiFqKrawhola2Ud4FN2bz3rDOO/17E+60BcwmzjOpikMm22cVMGYc2DP2qlZDStyIvxY/wBCXOsiw==
+	1:1415377749.657720 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415377749403
+206.80.201.33 - - [07/Nov/2014:08:29:09 -0800] "POST /api/v0.1/authentication/credentials/ HTTP/1.1" 403 9144 - "Wdesk/2.0 (Android)" "wf-books-stage.appspot.com" ms=151 cpu_ms=238 cpm_usd=0.001022 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415377749.888040 CSRF Failure: CSRF token incorrect.
+	1:1415377749.902100 Loading session u'7334fc25'.
+	1:1415377749.977859 PROFILE: eJytkrsKgzAYhV9FMjtovLu1Sx+gYykSkl8UtaGaSEF89ybQoUYIKm7/jY9zTjIh+AAtRN0Byh0fe66D+Ah9BYSpgW4padtB1Y8JMdkTUfOXPv1tVIluIJBqB+jHmmoO6qCjhFagx7wsB3WQO3h2nQUD72f4ng1y3wgJz1CSmJDYCmFEkEHwHooxWMZyhiWcnWApCExIcsxSsMrmgJrQamljLtHqqcP9SqKVkvRYLnFsgqI/0FW2zYUxA6ZQzVuCXEpKrZ9mo6/Mm5/zF0L6NIA=
+	1:1415377749.993950 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415377749856
+206.80.201.33 - - [07/Nov/2014:08:58:54 -0800] "GET /api/v1/books/Qm9vax5Cb29rOjRlOTJkZTMwYjU4YTRiYWNiZmYxMmViNTQ5ZjFjNWIz HTTP/1.1" 404 1307 - "Wdesk 2.0.0" "wf-books-stage.appspot.com" ms=318 cpu_ms=324 cpm_usd=0.000146 instance=00c61b117c04ae07dee73287401d54117f7cb1 app_engine_release=1.9.16
+	1:1415379534.378480 Loading session u'fda52949'.
+	1:1415379534.402070 REQINFO: 206.80.201.33 | daniel.bank@workiva.com | 00012345 | WebFilings
+	3:1415379534.423039 You are not allowed to access the requested item.
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/service/rest/book_handler.py", line 208, in get_resource
+	:     book = get_book(self.request.membership, book_key)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/api/book.py", line 21, in get_book
+	:     ret_book = book.get_book(membership, book_key)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book.py", line 796, in get_book
+	:     book = _get_book_no_perm(membership, book_key)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book.py", line 782, in _get_book_no_perm
+	:     from_cache=False)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/utils.py", line 199, in account_safe_get_entity
+	:     account_safe_check(entity, account, kind)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/webapps/utils.py", line 238, in account_safe_check
+	:     raise auth.PermissionDenied("You are not allowed to access the requested item.")
+	: PermissionDenied: You are not allowed to access the requested item.
+	3:1415379534.524400 Book Not Found
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/oauth_handler.py", line 602, in dispatch
+	:     rv = super(DjangoMiddlewareApiRequestHandler, self).dispatch()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 572, in dispatch
+	:     return self.handle_exception(e, self.app.debug)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 570, in dispatch
+	:     return method(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/rest_api_handler.py", line 324, in get
+	:     resource = self.get_resource(resource_id=resource_id, version=version)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 160, in call
+	:     return BaseDecorator.call(self, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/service/rest/book_handler.py", line 215, in get_resource
+	:     raise ResourceNotFound('Book Not Found')
+	: ResourceNotFound: Book Not Found
+	1:1415379534.636660 PROFILE: eJytlD1rwzAQhv+K0ZzBkj9kd2yHroVmKyUI+dIIIgskxQRC/nvl0sH1gVGv3fT58N7pQTcGV9CHaCywh0LIflcwN4E/gRrSQpmmWp3PIY3fbmy4eBWNG+ej3ztpyJ4hsjQN4CejZw6zYLXSJ5iX3fEY0oF05b4r/sro1gy5yRhUVCE6D4ep+sHh1RrECQXVa0hPSyMkStPSSDVq0LLJr3l1SVTXEvIIH2bcezUGpb+2M6NJFI0TH69DJi1BL5d8C0qkQV0uUE/OWpNP45uGZzafN81/UNpyTakoFGQChSL7LQrVJ96hcFSheIcStjSjBOeo1o5slOAoV/37/osGUQhGCewCibLpQu7Hm36o9/sng6sJuA==
+	1:1415379534.659490 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415379534356
+216.227.104.82 - eric.debusschere [07/Nov/2014:09:03:35 -0800] "POST /shell/shell.do HTTP/1.1" 200 474 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=178 cpu_ms=86 cpm_usd=0.000053 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415379815.559170 531
+216.227.104.82 - eric.debusschere [07/Nov/2014:09:04:50 -0800] "POST /shell/shell.do HTTP/1.1" 200 437 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=204 cpu_ms=86 cpm_usd=0.000049 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415379890.501350 531
+216.227.104.82 - eric.debusschere [07/Nov/2014:09:05:27 -0800] "POST /shell/shell.do HTTP/1.1" 200 93 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=1328 cpu_ms=2274 cpm_usd=0.000010 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415379927.390940 531
+216.227.104.82 - eric.debusschere [07/Nov/2014:09:06:46 -0800] "POST /shell/shell.do HTTP/1.1" 200 120 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=1530 cpu_ms=2534 cpm_usd=0.000013 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415380006.307430 531
+216.227.104.82 - eric.debusschere [07/Nov/2014:09:07:12 -0800] "POST /shell/shell.do HTTP/1.1" 200 123 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=1530 cpu_ms=2599 cpm_usd=0.000014 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	3:1415380032.640000 531
+206.80.201.33 - - [07/Nov/2014:09:25:11 -0800] "PUT /api/v1/books/Qm9vax5Cb29rOjQzOWZhNDA4YmM2MzQ0NDg4NjFiNmY3MTg4ZWY1ZmJl/tabs HTTP/1.1" 409 1321 "https://wf-books-stage.appspot.com/books/#/Qm9vax5Cb29rOjQzOWZhNDA4YmM2MzQ0NDg4NjFiNmY3MTg4ZWY1ZmJl" "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)" "wf-books-stage.appspot.com" ms=185 cpu_ms=194 cpm_usd=0.000148 instance=00c61b117c7e635e311314737199934d14a744 app_engine_release=1.9.16
+	1:1415381111.196910 Loading session u'4cb0563b:DUggImN7'.
+	1:1415381111.216210 REQINFO: 206.80.201.33 | daniel.bank@workiva.com | 00012345 | WebFilings
+	2:1415381111.217430 Input keys [u'key'] were discarded.
+	1:1415381111.232340 Tree version is 0
+	3:1415381111.238720 Attempting to update an out of date tree. Given version: 0 Current version: 1
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/oauth_handler.py", line 602, in dispatch
+	:     rv = super(DjangoMiddlewareApiRequestHandler, self).dispatch()
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 572, in dispatch
+	:     return self.handle_exception(e, self.app.debug)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/third_party/webapp2-2.5.2/webapp2.py", line 570, in dispatch
+	:     return method(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/rest_services/rest_api_handler.py", line 198, in put
+	:     resources = self.update_resources(data=data, version=version)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/auth/decorators.py", line 160, in call
+	:     return BaseDecorator.call(self, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/service/rest/tab_handler.py", line 429, in update_resources
+	:     ip_address=self.request.remote_addr
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 158, in _decorator
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/decorators.py", line 48, in call
+	:     return BaseDecorator.call(self, membership, entity_key, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/api/book_tab.py", line 36, in create_book_tabs
+	:     tree_version, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book_tab.py", line 195, in create_book_tabs
+	:     book, tabs = txn()
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 153, in __call__
+	:     return self.call(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/datastore/util.py", line 226, in call
+	:     ret = f()
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/datastore/util.py", line 221, in <lambda>
+	:     f = lambda: db.run_in_transaction(s)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/datastore.py", line 2487, in RunInTransaction
+	:     return RunInTransactionOptions(None, function, *args, **kwargs)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/datastore.py", line 2623, in RunInTransactionOptions
+	:     ok, result = _DoOneTry(function, args, kwargs)
+	:   File "/base/data/home/runtimes/python27/python27_lib/versions/1/google/appengine/api/datastore.py", line 2643, in _DoOneTry
+	:     result = function(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/datastore/util.py", line 215, in <lambda>
+	:     s = lambda: decorators.BaseDecorator.call(self, *args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/base/decorators.py", line 195, in call
+	:     return self.func(*args, **kwargs)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book_tab.py", line 189, in txn
+	:     book.create_node(name, BOOK_NODE_TAB, tab.keyname, tree_version, parent_id, after_id)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book.py", line 437, in create_node
+	:     self.append_child(book_node, tree_version)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book.py", line 468, in append_child
+	:     self.check_tree_version(current_version)
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/apps/books/book.py", line 432, in check_tree_version
+	:     "tree. Given version: %s Current version: %s" % (current_version, self.tree_version))
+	: TreeVersionException: Attempting to update an out of date tree. Given version: 0 Current version: 1
+	1:1415381111.346450 PROFILE: eJyt1EFrwyAUAOC/Ejz3UE1M0h5XWK9l222M4sxrIzMR1IRByX+fGRtkEcRmuflUPp7PpzcEn8DPVjSA9gku8CZBqgddA6vcxNaFnElp3Pj1hqpOMytUO279WXFDdASLXGhA94KPDmqg4YzXME6ry8W4DfuEDJvkv0YxN8j9Bt7OkTKIVMwyY5WGc5/+hdIVsiEeUizLhuRzKF8GZXSFY9Eg8gBX0b5o1hrGv5cjU6Pe/WcT9UlJ+c74R7S2C3Xko+xMPaOkuv5GU6jEocM+x1WszEKNsLRipdcVeGFb7Lz86AQ6dfHPBnu9kU6pg2oaEa8Rr/jp/cXHtFzhCnEe/BGilWJ4G74Amk+0Dw==
+206.80.201.33 - - [07/Nov/2014:09:25:26 -0800] "GET /api/v1/documents HTTP/1.1" 200 33869 "https://wf-books-stage.appspot.com/books/#/Qm9vax5Cb29rOjQzOWZhNDA4YmM2MzQ0NDg4NjFiNmY3MTg4ZWY1ZmJl" "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)" "wf-books-stage.appspot.com" ms=1742 cpu_ms=2968 cpm_usd=0.003785 instance=00c61b117cecb95a0aa1723fe7859136507175 app_engine_release=1.9.16
+	1:1415381124.536060 Loading session u'4cb0563b:RU0aaCNf'.
+	1:1415381124.565720 REQINFO: 206.80.201.33 | daniel.bank@workiva.com | 00012345 | WebFilings
+	3:1415381125.810849 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	3:1415381126.020360 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	3:1415381126.104530 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	3:1415381126.136010 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	1:1415381126.181990 PROFILE: eJytljtP60AQhf9K5JrCs7MPLyUUtLw6hJDlLGAJx5LtRCCU/46DbhFycq3kyJ3Xa32aOTNnPN9Z+kzVy1A3KbtciPf5xSJrN6l7T+Vy92Y8VuXHRz8+P31ny3VXDnW7Gk/m3834mN2kIRuPfeo2dbUDZU1qqrJ6T7vX7etrP35wudDtxeIPQ89niMwBKQ4hxSRkWQ5lP7RdetnoH5CBlMJ+OPfr1d06dV+n4mw4xDlLBpaDTiGyKEhSTGBZDlhKxwVqiXMsCzpCwnSH/58lObAKtr/EHLKMsHqJBZZOm2eC5YFFt6pAHU3wLCsCq2D1MhCXSs6yIC41bFyKI9CyeinOZM/2vYK3NbB+VPCjRra/LPjRirAs0Msq2xMWPGQdzQK9rGdntEO9CraODnrV5ezMcaC9E3auuiOz8Pw9IkYcN6SrJbcQEuvqkQVW3C/gw6mrVoDqGQJj4uTid5Xe6tVjV676svq9PjVLE/GnTfaDKC45+6jb9RkoA77WfdZ12zT1GbgjY5UoggbseAqDHc9gCpCbw+AvmsA4XJY5DFSKScod2R85DlScysqAy6hoCnQFg4kgDhVNnKVUPp8lKY8Vp6LBRZqKxswy9T2OQQqj82ijdvu8/QFaYhCP
+	1:1415381126.227880 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415381124520
+206.80.201.33 - - [07/Nov/2014:10:08:02 -0800] "GET /api/v2/annotations/?entity_resource_id=V0ZEYXRhRW50aXR5HkJvb2s6OTlmYjQ1M2M0YmZhNDEzNzg4ZWRmMWE2MGRmMjEyMWE&type=0&verbose=1 HTTP/1.1" 200 7425 - "Wdesk/2.0.0 (iPad Simulator; iOS 7.1; Scale/2.00)" "wf-books-stage.appspot.com" ms=687 cpu_ms=346 cpm_usd=0.000830 instance=00c61b117c57abdfbef5c2d98ca72daa363e7e8b app_engine_release=1.9.16
+	1:1415383682.133030 Loading session u'843014aa'.
+	1:1415383682.149090 REQINFO: 206.80.201.33 | robert.harwell@workiva.com | 00012345 | WebFilings
+	1:1415383682.206100 Membership: <authmodel.auth.Membership object at 0xf73abb70>
+	3:1415383682.539000 Invalid book section keyname: BookSection:9daf80e74b984abcbbb708c71f79648d
+	1:1415383682.758590 PROFILE: eJytlE1qwzAQha9itM4i0ujPvUDXaZelBCFPiCGOQZZNQvDdq0AXqQdKInmnkcTHG72nuTG8oN/HtkP2VmmQm4r1E4YjuiZtbFPp3ek0pPXXjTVjcLHtz6kSvydpyd4xslQOGKbW3zmsw847f8T7dn84DOlCgs2bqpShV2BwvoTYfyGNi26IfcD9BH9AgqqpH0gf43k3Yrg+iwOzQnMWlhBeosnaVXE1yUAZjjjJpSzhkcd7dODzOQcE1ERVbsCkWKJMblQJCV4PlzCEIlTBewtDfhDoIh6Jq+KvOwhcLTEy00HQpMOixEtOhkSmMkljCiV/RyqSjVxldOiIEmVqu9bAV4IoM6JEmSQDp85Tprmdv+cfvf5hJQ==
+206.80.201.33 - - [07/Nov/2014:10:14:57 -0800] "GET /api/v1/documents HTTP/1.1" 200 33456 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=3133 cpu_ms=5069 cpm_usd=0.003739 instance=00c61b117c67b7a8957fe53f84749bbad9ce9c app_engine_release=1.9.16
+	1:1415384094.147320 This request is on a new instance!
+	0:1415384094.378740 countour.yaml not found.
+	0:1415384094.379650 countour.yaml not found.
+	0:1415384094.379770 No custom countour config, using default config.
+	0:1415384094.451329 countour.yaml not found.
+	0:1415384094.452320 countour.yaml not found.
+	0:1415384094.452480 No custom countour config, using default config.
+	1:1415384095.777730 Loading session u'a7771b1e'.
+	1:1415384095.800960 REQINFO: 206.80.201.33 | claire.sarsam@workiva.com | 00012345 | WebFilings
+	3:1415384096.893200 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	3:1415384097.046770 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	3:1415384097.096450 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	3:1415384097.109670 None passed as date to datetime_as_tz_iso
+	: Traceback (most recent call last):
+	:   File "/base/data/home/apps/s~wf-books-stage/current-master-10-30.379756065894204125/external_libs/wf/utils/__init__.py", line 20, in datetime_as_tz_iso
+	:     raise ValueError("None passed as date to datetime_as_tz_iso")
+	: ValueError: None passed as date to datetime_as_tz_iso
+	1:1415384097.145270 PROFILE: eJytl0tPwzAQhP9KlTMHrx3HMUc4cOV1QwhFqaGRmkTKowKh/ncM4hAyKGpGvcVJ9cm7M/voZxLeQ/kyVHVILjdifH6xSdpD6Hah2MY3Kh7LYr/v4/PTZ7Idu2Ko2iae9O+X+JjchCGJxz50h6r8BiV1qMui3IXv1+3rax9/cLmxx4vNH0a2niFmDvGLkG0xFP3QduHlYP6AtMxBREQmnUNy7jYmh7Cmybkfm7sxdB+n4jK4l7XkxYyfo5whUSmkPF92wAJKz1GiFMuCZInQIYLHRS/7aoHlgGVpFqgoGZt7q4DlyCI0FnX0bIwWdNTKsSzQUWthWaCjTlOWBTpqy7acDHKvHZt7bDiaru0sA5ZnY3TgVSOsjg5Gj9Gs7x3EaAw9OkDHWO4sC3SMNmFZGKNjfZ/DfDQ5O9E8esKz/d5jvtZvEd4BhdRPFM7YqXwPJy5ZykK+GYxYuM00PVfhrWoeu6Lpi/Ln86lRCrZnstGLZOCGqa9uxxUobBB6yrpu67pagcvRp4QGWmEZMhg5y22MwmZFYXBGMBg5S7X8s8VwmPMEhY7mMLgCURjcWBjMP7W1vtHG/7dyfD5+AWYafBE=
+	1:1415384097.175250 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415384095745
+68.225.192.230 - - [07/Nov/2014:12:23:22 -0800] "POST /api/v0.1/authentication/credentials/ HTTP/1.1" 403 9144 - "Wdesk/2.0 (Android)" "wf-books-stage.appspot.com" ms=392 cpu_ms=389 cpm_usd=0.001022 instance=00c61b117c67b7a8957fe53f84749bbad9ce9c app_engine_release=1.9.16
+	3:1415391802.294140 CSRF Failure: CSRF token incorrect.
+	1:1415391802.418299 Saving session '498a735a'.
+	1:1415391802.545430 PROFILE: eJytlMFrwyAUxv+V4LmHPDXZ1tu6Qa+D7TZGEX1dpTGhRsOg9H+fHTukEYKV3Hw++fG9z0/PBH9Q7pw2SNYFq2FVkG5Ae0ChwkYZSimapg/rzzNR3gqnuzZU9L8TlmSLjoSyRztoeeUQg0YKecDrdrff9+HAuoDLqrhllLMQJZzoXWdxN7Ab0EMEul8MK+cg74kQvoSSxykE6jxfOJ2S2P0z1ZExHEaUN58sp67m3HnFBh0m5aaMHMpJH7AF3AFYInxAo5vKvXOgkTnViLTxzfFZqQktsI4nj36iij/NOZQ4G4UoQGPKBr91+2FF2wv5106ck7JIXMaDpTzKZJ0XblpFY0I5/s9eOmN0Oi48u6/LL9dprMk=
+	1:1415391802.561830 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415391802183
+68.225.192.230 - - [07/Nov/2014:12:23:23 -0800] "POST /api/v0.1/authentication/credentials/ HTTP/1.1" 403 9144 - "Wdesk/2.0 (Android)" "wf-books-stage.appspot.com" ms=131 cpu_ms=194 cpm_usd=0.001022 instance=00c61b117c67b7a8957fe53f84749bbad9ce9c app_engine_release=1.9.16
+	3:1415391802.943589 CSRF Failure: CSRF token incorrect.
+	1:1415391802.959440 Loading session u'7e6fc030'.
+	1:1415391803.018230 PROFILE: eJytk0EKgzAQRa8iWXehRlPbXbvpAbosRUIyoqgNjVEK4t07QhfVgNjU3cwkPP7/mfQEXiBSU9RAjl7gs51HVAc6By5x4GMreFU1WN96IlvNTaEe2IWfEyzJBQzBtgHdFWLkkBpqwUUO41hlWYMXkD7svH8ZyRLjulJHuIGQgM0hbBEiueGNURrSjk5AoT8H0d8thYu5rLREozkkcbNEt1ATW7k4PHVsWXJRYtk5uOXCrMWLvkDntipPUs5giCqfLbRTSXtr+1z+UjTchzeEBDRU
+	1:1415391803.029300 appstats: http://wf-books-stage.appspot.com/stats/details?time=1415391802911
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:53:12 -0800] "POST /shell/shell.do HTTP/1.1" 200 312 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=54 cpu_ms=20 cpm_usd=0.000035 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397192.121670 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:53:26 -0800] "POST /shell/shell.do HTTP/1.1" 200 70 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=67 cpu_ms=62 cpm_usd=0.000008 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397206.783590 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:53:29 -0800] "POST /shell/shell.do HTTP/1.1" 200 151 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=33 cpu_ms=20 cpm_usd=0.000017 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397209.572340 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:53:35 -0800] "POST /shell/shell.do HTTP/1.1" 200 312 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=36 cpu_ms=41 cpm_usd=0.000035 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397215.398250 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:53:41 -0800] "POST /shell/shell.do HTTP/1.1" 200 346 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=44 cpu_ms=41 cpm_usd=0.000039 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397221.000690 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:53:59 -0800] "POST /shell/shell.do HTTP/1.1" 200 174 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=43 cpu_ms=41 cpm_usd=0.000019 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397239.569190 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:54:08 -0800] "POST /shell/shell.do HTTP/1.1" 200 108 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=55 cpu_ms=62 cpm_usd=0.000012 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397248.497800 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:55:13 -0800] "POST /shell/shell.do HTTP/1.1" 200 311 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=29 cpu_ms=20 cpm_usd=0.000035 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397313.234960 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
+216.227.104.82 - eric.debusschere [07/Nov/2014:13:55:32 -0800] "POST /shell/shell.do HTTP/1.1" 200 407 - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36" "wf-books-stage.appspot.com" ms=39 cpu_ms=41 cpm_usd=0.000045 instance=00c61b117c36f7fce12921cb9a6b7d40bc0bde3d app_engine_release=1.9.16
+	3:1415397332.764720 ahBzfndmLWJvb2tzLXN0YWdlcjYLEhBSZXNvdXJjZU1hbmlmZXN0IiAzNzNjYWQ2ZDNiNGY0NWFjYTQ2NzA4MjE5ZTkzMzFkMAw
