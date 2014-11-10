@@ -5,6 +5,8 @@ self_exception = False
 error_dict = dict()
 for line in content:
 	if self_exception:
+		line = line.replace(":", "", 1)
+		line = line.lstrip()
 		print line
 		if line in error_dict:
 			error_dict[line] = error_dict[line] + 1
